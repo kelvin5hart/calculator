@@ -27,15 +27,19 @@ opperators = {
 }
 
 def calculator():
-  num1 = int(input("What's the first number? \n"))
+  num1 = float(input("What's the first number? \n"))
   nextCalculation = True
   for i in opperators:
     print (i)
 
-
   while nextCalculation:
     operator = input("Pick an operation from the line above: ")
-    num2 = int(input("What's the next number? \n"))
+
+    if operator not in opperators:
+      nextCalculation = False
+      print("Your entry was invalid")
+      calculator()
+    num2 = float(input("What's the next number? \n"))
     operation = opperators[operator]
     result = operation(num1, num2)
     print(f"{num1} {operator} {num2} = {result}")
