@@ -26,14 +26,30 @@ opperators = {
   "/": divide
 }
 
-num1 = int(input("What's the first number? \n"))
-num2 = int(input("What's the second number? \n"))
+def calculator():
+  num1 = int(input("What's the first number? \n"))
+  nextCalculation = True
+  for i in opperators:
+    print (i)
 
-for i in opperators:
-  print (i)
-operator = input("Pick an operation from the line above: ")
 
-operation = opperators[operator]
-result = operation(num1, num2)
+  while nextCalculation:
+    operator = input("Pick an operation from the line above: ")
+    num2 = int(input("What's the next number? \n"))
+    operation = opperators[operator]
+    result = operation(num1, num2)
+    print(f"{num1} {operator} {num2} = {result}")
 
-print(f"{num1} {operator} {num2} = {result}")
+    continueCalculation = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation or 'e' to exit. \n").lower()
+    if continueCalculation == "y":
+      num1 = result
+    elif continueCalculation == "n":
+      nextCalculation = False
+      calculator()
+    elif continueCalculation == "e":
+      nextCalculation = False
+    else:
+      print("Invalid Entry")
+      nextCalculation = False
+
+calculator()
